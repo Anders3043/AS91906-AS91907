@@ -7,7 +7,10 @@ def main():
     main_window = Tk()
     main_window.geometry("1500x750")
     main_window.config(bg="#094074")
-    setup()
+    Button(main_window, text="QUIT", command=leave, height=3, width=30, bg="#edae49").place(x=1138, y=550)
+    Button(main_window, text="ENTER NEW MATCH DETAILS", command=enter, height=5, width=50, bg="#edae49").place(x=200, y=400)
+    Button(main_window, text="VISIT OLD MATCH DETAILS", height=5, width=50, bg="#edae49").place(x=1000, y=400)
+    Label(main_window, font='bold', text="Welcome to this program made to store sports games details", bg="#094074", fg="white").place(x=500, y=200)
     main_window.resizable(False, False)
     main_window.mainloop()
 
@@ -44,18 +47,17 @@ def enter():
 
 # Submit button for the first page
 def sub1():
-    enter1.destroy()
-    enter2 = Tk()
-    enter2.geometry("1500x750")
-    enter2.config(bg="#094074")
-
-
-# Setups for the buttons
-def setup():
-    Button(main_window, text="QUIT", command=leave, height=3, width=30, bg="#edae49").place(x=1138, y=550)
-    Button(main_window, text="ENTER NEW MATCH DETAILS", command=enter, height=5, width=50, bg="#edae49").place(x=200, y=400)
-    Button(main_window, text="VISIT OLD MATCH DETAILS", height=5, width=50, bg="#edae49").place(x=1000, y=400)
-    Label(main_window, font='bold', text="Welcome to this program made to store sports games details", bg="#094074").place(x=500, y=200)
+    team_a_check = len(team_a.get())
+    team_b_check = len(team_b.get())
+    date_check = len(date.get())
+    location_check = len(location.get())
+    if team_b_check != 0 and team_a_check != 0 and date_check != 0 and location_check != 0:
+        enter1.destroy()
+        enter2 = Tk()
+        enter2.geometry("1500x750")
+        enter2.config(bg="#094074")
+    else:
+        Label(enter1, font="bold", text="Please make sure every box has been filled", fg='red', bg='#094074').place(x=580, y=350)
 
 
 main()
