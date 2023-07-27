@@ -27,6 +27,7 @@ def enter():
     enter1 = Tk()
     enter1.geometry("1500x750")
     enter1.config(bg="#094074")
+    enter1.resizable(False, False)
     # Entries
     team_a = Entry(bg="#306383")
     team_a.place(x=300, y=200, width=300, height=80)
@@ -47,17 +48,86 @@ def enter():
 
 # Submit button for the first page
 def sub1():
+    # Creating variable for checking
     team_a_check = len(team_a.get())
     team_b_check = len(team_b.get())
     date_check = len(date.get())
     location_check = len(location.get())
-    if team_b_check != 0 and team_a_check != 0 and date_check != 0 and location_check != 0:
+    # Creating variable therefore it could be used for the next page
+    team_a_box = team_a.get()
+    team_b_box = team_b.get()
+    date_box = date.get()
+    location_box = location.get()
+    # Checking if any of the entry are empty
+    if team_b_check == 0 or team_a_check == 0 or date_check == 0 or location_check == 0:
+        Label(enter1, font="bold", text="Please make sure every box has been filled", fg='red', bg='#094074').place(x=570, y=350)
+
+    # Running the new window
+    else:
+        # Setup new page
         enter1.destroy()
         enter2 = Tk()
         enter2.geometry("1500x750")
         enter2.config(bg="#094074")
-    else:
-        Label(enter1, font="bold", text="Please make sure every box has been filled", fg='red', bg='#094074').place(x=580, y=350)
+        enter2.resizable(False, False)
+        # Making new labels based on the entry from last page
+        Label(enter2, font='bold', text=team_a_box, bg='#003d5b', fg='white').place(x=300, y=160)
+        Label(enter2, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
+        Label(enter2, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
+        Label(enter2, font='bold', text=location_box, bg='#003d5b', fg='white').place(x=750, y=200)
+        # Making the VS label
+        vs = Label(enter2, font='bold', text='VS', bg='#094074', fg='red',)
+        vs.config(font=('Helvetica bold', 70))
+        vs.place(x=700, y=400)
+        # Making new entry
+        team_a_mem1 = Entry(bg="#306383")
+        team_a_mem1.place(x=220, y=250, width=200, height=30)
+        team_a_mem2 = Entry(bg="#306383")
+        team_a_mem2.place(x=220, y=280, width=200, height=30)
+        team_a_mem3 = Entry(bg="#306383")
+        team_a_mem3.place(x=220, y=310, width=200, height=30)
+        team_a_mem4 = Entry(bg="#306383")
+        team_a_mem4.place(x=220, y=340, width=200, height=30)
+        team_a_mem5 = Entry(bg="#306383")
+        team_a_mem5.place(x=220, y=370, width=200, height=30)
+        team_a_mem6 = Entry(bg="#306383")
+        team_a_mem6.place(x=220, y=400, width=200, height=30)
+        team_a_mem7 = Entry(bg="#306383")
+        team_a_mem7.place(x=220, y=430, width=200, height=30)
+        team_a_mem8 = Entry(bg="#306383")
+        team_a_mem8.place(x=220, y=460, width=200, height=30)
+        team_a_mem9 = Entry(bg="#306383")
+        team_a_mem9.place(x=220, y=490, width=200, height=30)
+        team_a_mem10 = Entry(bg="#306383")
+        team_a_mem10.place(x=220, y=520, width=200, height=30)
+        team_a_mem11 = Entry(bg="#306383")
+        team_a_mem11.place(x=220, y=550, width=200, height=30)
+        team_b_mem1 = Entry(bg="#306383")
+        team_b_mem1.place(x=1120, y=250, width=200, height=30)
+        team_b_mem2 = Entry(bg="#306383")
+        team_b_mem2.place(x=1120, y=280, width=200, height=30)
+        team_b_mem3 = Entry(bg="#306383")
+        team_b_mem3.place(x=1120, y=310, width=200, height=30)
+        team_b_mem4 = Entry(bg="#306383")
+        team_b_mem4.place(x=1120, y=340, width=200, height=30)
+        team_b_mem5 = Entry(bg="#306383")
+        team_b_mem5.place(x=1120, y=370, width=200, height=30)
+        team_b_mem6 = Entry(bg="#306383")
+        team_b_mem6.place(x=1120, y=400, width=200, height=30)
+        team_b_mem7 = Entry(bg="#306383")
+        team_b_mem7.place(x=1120, y=430, width=200, height=30)
+        team_b_mem8 = Entry(bg="#306383")
+        team_b_mem8.place(x=1120, y=460, width=200, height=30)
+        team_b_mem9 = Entry(bg="#306383")
+        team_b_mem9.place(x=1120, y=490, width=200, height=30)
+        team_b_mem10 = Entry(bg="#306383")
+        team_b_mem10.place(x=1120, y=520, width=200, height=30)
+        team_b_mem11 = Entry(bg="#306383")
+        team_b_mem11.place(x=1120, y=550, width=200, height=30)
+        team_a_goal = Entry(bg="#306383")
+        team_a_goal.place(x=220, y=600, width=200, height=75)
+        team_b_goal = Entry(bg="#306383")
+        team_b_goal.place(x=1120, y=600, width=200, height=75)
 
 
 main()
