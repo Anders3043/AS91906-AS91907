@@ -35,6 +35,7 @@ def enter():
     team_b.place(x=930, y=200, width=300, height=80)
     date = Entry(bg="#306383")
     date.place(x=300, y=450, width=300, height=80)
+    date.insert(0, "Please put it in this format DAY/MONTH eg. 28/7")
     location = Entry(bg="#306383")
     location.place(x=930, y=450, width=300, height=80)
     # Labels
@@ -48,6 +49,7 @@ def enter():
 
 # Submit button for the first page
 def sub1():
+    global team_a_mem1, team_b_mem1, enter2, team_a_goal, team_b_goal
     # Creating variable for checking
     team_a_check = len(team_a.get())
     team_b_check = len(team_b.get())
@@ -59,7 +61,7 @@ def sub1():
     date_box = date.get()
     location_box = location.get()
     # Checking if any of the entry are empty
-    if team_b_check == 0 or team_a_check == 0 or date_check == 0 or location_check == 0:
+    if team_b_check == 0 or team_a_check == 0 or date_check == 0 or location_check == 0 or date_box == "Please put it in this format DAY/MONTH eg. 28/7":
         Label(enter1, font="bold", text="Please make sure every box has been filled", fg='red', bg='#094074').place(x=570, y=350)
 
     # Running the new window
@@ -128,6 +130,30 @@ def sub1():
         team_a_goal.place(x=220, y=600, width=200, height=75)
         team_b_goal = Entry(bg="#306383")
         team_b_goal.place(x=1120, y=600, width=200, height=75)
+        Button(enter2, text="Submit", command=team_check, height=3, width=30, bg="#edae49").place(x=650, y=615)
+
+
+def team_check():
+    team_a_player1 = team_a_mem1.get()
+    team_b_player1 = team_b_mem1.get()
+    try:
+        int(team_a_goal.get())
+        a_goal = "True"
+    except ValueError:
+        a_goal = "False"
+
+    try:
+        int(team_b_goal.get())
+        b_goal = "True"
+    except ValueError:
+        b_goal = "False"
+
+    if team_a_player1 == "" or team_b_player1 == "":
+        Label(enter2, font='bold', text='Please make sure you have at least entered 1 member on each team', bg="#094074", fg="red").place(x=480, y=550)
+    elif a_goal == "False" or b_goal == "False":
+        Label(enter2, font='bold', text='Please make sure you have entered the goals each team score in numbers', bg='#094074', fg='red').place(x=460, y=550)
+    else:
+        print("done")
 
 
 main()
