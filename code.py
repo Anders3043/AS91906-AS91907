@@ -8,9 +8,11 @@ def main():
     main_window.geometry("1500x750")
     main_window.config(bg="#094074")
     Button(main_window, text="QUIT", command=leave, height=3, width=30, bg="#edae49").place(x=1138, y=550)
-    Button(main_window, text="ENTER NEW MATCH DETAILS", command=enter, height=5, width=50, bg="#edae49").place(x=200, y=400)
+    Button(main_window, text="ENTER NEW MATCH DETAILS", command=enter, height=5, width=50, bg="#edae49").place(x=200,
+                                                                                                               y=400)
     Button(main_window, text="VISIT OLD MATCH DETAILS", height=5, width=50, bg="#edae49").place(x=1000, y=400)
-    Label(main_window, font='bold', text="Welcome to this program made to store sports games details", bg="#094074", fg="white").place(x=500, y=200)
+    Label(main_window, font='bold', text="Welcome to this program made to store sports games details", bg="#094074",
+          fg="white").place(x=500, y=200)
     main_window.resizable(False, False)
     main_window.mainloop()
 
@@ -42,7 +44,8 @@ def enter():
     Label(enter1, font="bold", text="Please enter name of team 1", bg="#094074", fg="white").place(x=300, y=150)
     Label(enter1, font="bold", text="Please enter name of team 2", bg="#094074", fg="white").place(x=930, y=150)
     Label(enter1, font="bold", text="Please enter the date of the game", bg="#094074", fg="white").place(x=300, y=400)
-    Label(enter1, font="bold", text="Please enter the location of the game", bg="#094074", fg="white").place(x=930, y=400)
+    Label(enter1, font="bold", text="Please enter the location of the game", bg="#094074", fg="white").place(x=930,
+                                                                                                             y=400)
     # Submit button
     Button(enter1, text="Submit", command=sub1, height=3, width=30, bg="#edae49").place(x=930, y=600)
 
@@ -52,7 +55,7 @@ def sub1():
     global team_a_mem1, team_b_mem1, enter2, team_a_goal, team_b_goal, team_a_box, team_b_box, date_box, location_box, \
         team_a_mem2, team_a_mem3, team_a_mem4, team_a_mem5, team_a_mem6, team_a_mem7, team_a_mem8, team_a_mem9, \
         team_a_mem10, team_a_mem11, team_b_mem2, team_b_mem3, team_b_mem4, team_b_mem5, team_b_mem6, team_b_mem7, \
-        team_b_mem8, team_b_mem9, team_b_mem10, team_b_mem11
+        team_b_mem8, team_b_mem9, team_b_mem10, team_b_mem11, enter3
     # Creating variable for checking
     team_a_check = len(team_a.get())
     team_b_check = len(team_b.get())
@@ -65,7 +68,8 @@ def sub1():
     location_box = location.get()
     # Checking if any of the entry are empty
     if team_b_check == 0 or team_a_check == 0 or date_check == 0 or location_check == 0 or date_box == "Please put it in this format DAY/MONTH eg. 28/7":
-        Label(enter1, font="bold", text="Please make sure every box has been filled", fg='red', bg='#094074').place(x=570, y=350)
+        Label(enter1, font="bold", text="Please make sure every box has been filled", fg='red', bg='#094074').place(
+            x=570, y=350)
 
     # Running the new window
     else:
@@ -77,13 +81,15 @@ def sub1():
         enter2.resizable(False, False)
         # Making new labels based on the entry
         Label(enter2, font='bold', text=team_a_box, bg='#003d5b', fg='white').place(x=300, y=160)
-        Label(enter2, font='bold', text="Please enter team member on each side", bg='#094074', fg='white').place(x=580, y=240)
-        Label(enter2, font='bold', text="Please enter goal scored on each side", bg='#094074', fg='white').place(x=600, y=520)
+        Label(enter2, font='bold', text="Please enter team member on each side", bg='#094074', fg='white').place(x=580,
+                                                                                                                 y=240)
+        Label(enter2, font='bold', text="Please enter goal scored on each side", bg='#094074', fg='white').place(x=600,
+                                                                                                                 y=520)
         Label(enter2, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
         Label(enter2, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
         Label(enter2, font='bold', text=location_box, bg='#003d5b', fg='white').place(x=750, y=200)
         # Making the VS label
-        vs = Label(enter2, font='bold', text='VS', bg='#094074', fg='red',)
+        vs = Label(enter2, font='bold', text='VS', bg='#094074', fg='red', )
         vs.config(font=('Helvetica bold', 70))
         vs.place(x=700, y=400)
         # Making new entry
@@ -140,26 +146,34 @@ def sub1():
 
 
 def team_check():
+    global team_a_mem1_goal, team_a_mem2_goal, team_a_mem3_goal, team_a_mem4_goal, team_a_mem5_goal, team_a_mem6_goal, \
+        team_a_mem7_goal, team_a_mem8_goal, team_a_mem9_goal, team_a_mem10_goal, team_a_mem11_goal, team_b_mem1_goal, \
+        team_b_mem2_goal, team_b_mem3_goal, team_b_mem4_goal, team_b_mem5_goal, team_b_mem6_goal, team_b_mem7_goal, \
+        team_b_mem8_goal, team_b_mem9_goal, team_b_mem10_goal, team_b_mem11_goal, goals, team_a_goal1, team_b_goal1
     team_a_player1 = team_a_mem1.get()
     team_b_player1 = team_b_mem1.get()
+    team_a_goal1 = team_a_goal.get()
+    team_b_goal1 = team_b_goal.get()
     # Check if goals are number
     try:
-        int(team_a_goal.get())
+        int(team_a_goal1)
         a_goal = "True"
     except ValueError:
         a_goal = "False"
 
     try:
-        int(team_b_goal.get())
+        int(team_b_goal1)
         b_goal = "True"
     except ValueError:
         b_goal = "False"
 
     # Check if the entries are correct
     if team_a_player1 == "" or team_b_player1 == "":
-        Label(enter2, font='bold', text='Please make sure you have at least entered 1 member on each team', bg="#094074", fg="red").place(x=480, y=550)
+        Label(enter2, font='bold', text='Please make sure you have at least entered 1 member on each team',
+              bg="#094074", fg="red").place(x=480, y=550)
     elif a_goal == "False" or b_goal == "False":
-        Label(enter2, font='bold', text='Please make sure you have entered the goals each team score in numbers', bg='#094074', fg='red').place(x=450, y=550)
+        Label(enter2, font='bold', text='Please make sure you have entered the goals each team score in numbers',
+              bg='#094074', fg='red').place(x=450, y=550)
     else:
         # Put player's name in a list
         team_a_player = [team_a_mem1.get(), team_a_mem2.get(), team_a_mem3.get(), team_a_mem4.get(), team_a_mem5.get(),
@@ -170,17 +184,18 @@ def team_check():
                          team_b_mem11.get()]
         # Create new page
         enter2.destroy()
-        enter3 = Tk()
-        enter3.geometry("1500x750")
-        enter3.config(bg="#094074")
-        enter3.resizable(False, False)
+        goals = Tk()
+        goals.geometry("1500x750")
+        goals.config(bg="#094074")
+        goals.resizable(False, False)
         # Labels for new page
-        Label(enter3, font='bold', text=team_a_box, bg='#003d5b', fg='white').place(x=300, y=160)
-        Label(enter3, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
-        Label(enter3, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
-        Label(enter3, font='bold', text=location_box, bg='#003d5b', fg='white').place(x=750, y=200)
-        Label(enter3, font='bold', text="Please enter goal scored by each member on each side", bg='#094074', fg='white').place(x=530, y=240)
-        Label(enter3, font='bold', text="(Remove the player's name then add the goal they scored)", bg='#094074',
+        Label(goals, font='bold', text=team_a_box, bg='#003d5b', fg='white').place(x=300, y=160)
+        Label(goals, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
+        Label(goals, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
+        Label(goals, font='bold', text=location_box, bg='#003d5b', fg='white').place(x=750, y=200)
+        Label(goals, font='bold', text="Please enter goal scored by each member on each side", bg='#094074',
+              fg='white').place(x=530, y=240)
+        Label(goals, font='bold', text="(Remove the player's name then add the goal they scored)", bg='#094074',
               fg='white').place(x=515, y=280)
         # Entry boxes for goal scored by each member
         team_a_mem1_goal = Entry(bg="#306383")
@@ -249,6 +264,27 @@ def team_check():
         team_b_mem11_goal = Entry(bg="#306383")
         team_b_mem11_goal.place(x=1120, y=550, width=200, height=30)
         team_b_mem11_goal.insert(0, team_b_player[10])
+        # Submit button
+        Button(goals, text="Submit", command=goal_check, height=3, width=30, bg="#edae49").place(x=650, y=615)
+
+
+def goal_check():
+    team_a_goal_check = int(team_a_mem1_goal.get()) + int(team_a_mem2_goal.get()) + int(team_a_mem3_goal.get())\
+                        + int(team_a_mem4_goal.get()) + int(team_a_mem5_goal.get()) + int(team_a_mem6_goal.get())\
+                        + int(team_a_mem7_goal.get()) + int(team_a_mem8_goal.get()) + int(team_a_mem9_goal.get())\
+                        + int(team_a_mem10_goal.get()) + int(team_a_mem11_goal.get())
+
+    team_b_goal_check = int(team_b_mem1_goal.get()) + int(team_b_mem2_goal.get()) + int(team_b_mem3_goal.get())\
+                        + int(team_b_mem4_goal.get()) + int(team_b_mem5_goal.get()) + int(team_b_mem6_goal.get())\
+                        + int(team_b_mem7_goal.get()) + int(team_b_mem8_goal.get()) + int(team_b_mem9_goal.get())\
+                        + int(team_b_mem10_goal.get()) + int(team_b_mem11_goal.get())
+
+    if team_a_goal1 != team_a_goal_check or team_b_goal1 != team_b_goal_check:
+        Label(goals, font='bold', text='Please make sure you have entered the correct amount of goals',
+              bg="#094074", fg="red").place(x=480, y=550)
+        print(team_a_goal_check, team_a_goal1, team_b_goal_check, team_b_goal1)
+    else:
+        print("hello world")
 
 
 main()
