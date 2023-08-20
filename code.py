@@ -152,17 +152,21 @@ def team_check():
         team_b_mem8_goal, team_b_mem9_goal, team_b_mem10_goal, team_b_mem11_goal, goals, team_a_goal1, team_b_goal1
     team_a_player1 = team_a_mem1.get()
     team_b_player1 = team_b_mem1.get()
-    team_a_goal1 = team_a_goal.get()
-    team_b_goal1 = team_b_goal.get()
+    if team_a_goal.get() == "" or team_b_goal.get() == "":
+        Label(enter2, font='bold', text='Please make sure you have  entered the goals on each team',
+              bg="#094074", fg="red").place(x=480, y=550)
+    else:
+        team_a_goal1 = int(team_a_goal.get())
+        team_b_goal1 = int(team_b_goal.get())
     # Check if goals are number
     try:
-        int(team_a_goal1)
+        int(team_a_goal.get())
         a_goal = "True"
     except ValueError:
         a_goal = "False"
 
     try:
-        int(team_b_goal1)
+        int(team_b_goal.get())
         b_goal = "True"
     except ValueError:
         b_goal = "False"
