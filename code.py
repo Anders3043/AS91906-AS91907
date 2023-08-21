@@ -80,11 +80,12 @@ def sub1():
         enter2.config(bg="#094074")
         enter2.resizable(False, False)
         # Making new labels based on the entry
-        Label(enter2, font='bold', text=team_a_box, bg='#003d5b', fg='white').place(x=300, y=160)
+
         Label(enter2, font='bold', text="Please enter team member on each side", bg='#094074', fg='white').place(x=580,
                                                                                                                  y=240)
         Label(enter2, font='bold', text="Please enter goal scored on each side", bg='#094074', fg='white').place(x=600,
                                                                                                                  y=520)
+        Label(enter2, font='bold', text=team_a_box, bg='#003d5b', fg='white').place(x=300, y=160)
         Label(enter2, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
         Label(enter2, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
         Label(enter2, font='bold', text=location_box, bg='#003d5b', fg='white').place(x=750, y=200)
@@ -201,6 +202,8 @@ def team_check():
               fg='white').place(x=530, y=240)
         Label(goals, font='bold', text="(Remove the player's name then add the goal they scored)", bg='#094074',
               fg='white').place(x=515, y=280)
+        Label(goals, font='bold', text="Please fill every box (if player didn't score then put 0)", bg='#094074',
+              fg='white').place(x=530, y=320)
         # Entry boxes for goal scored by each member
         team_a_mem1_goal = Entry(bg="#306383")
         team_a_mem1_goal.place(x=220, y=250, width=200, height=30)
@@ -273,22 +276,46 @@ def team_check():
 
 
 def goal_check():
-    team_a_goal_check = int(team_a_mem1_goal.get()) + int(team_a_mem2_goal.get()) + int(team_a_mem3_goal.get())\
-                        + int(team_a_mem4_goal.get()) + int(team_a_mem5_goal.get()) + int(team_a_mem6_goal.get())\
-                        + int(team_a_mem7_goal.get()) + int(team_a_mem8_goal.get()) + int(team_a_mem9_goal.get())\
+    # Adding each team's goal together
+    team_a_goal_check = int(team_a_mem1_goal.get()) + int(team_a_mem2_goal.get()) + int(team_a_mem3_goal.get()) \
+                        + int(team_a_mem4_goal.get()) + int(team_a_mem5_goal.get()) + int(team_a_mem6_goal.get()) \
+                        + int(team_a_mem7_goal.get()) + int(team_a_mem8_goal.get()) + int(team_a_mem9_goal.get()) \
                         + int(team_a_mem10_goal.get()) + int(team_a_mem11_goal.get())
 
-    team_b_goal_check = int(team_b_mem1_goal.get()) + int(team_b_mem2_goal.get()) + int(team_b_mem3_goal.get())\
-                        + int(team_b_mem4_goal.get()) + int(team_b_mem5_goal.get()) + int(team_b_mem6_goal.get())\
-                        + int(team_b_mem7_goal.get()) + int(team_b_mem8_goal.get()) + int(team_b_mem9_goal.get())\
+    team_b_goal_check = int(team_b_mem1_goal.get()) + int(team_b_mem2_goal.get()) + int(team_b_mem3_goal.get()) \
+                        + int(team_b_mem4_goal.get()) + int(team_b_mem5_goal.get()) + int(team_b_mem6_goal.get()) \
+                        + int(team_b_mem7_goal.get()) + int(team_b_mem8_goal.get()) + int(team_b_mem9_goal.get()) \
                         + int(team_b_mem10_goal.get()) + int(team_b_mem11_goal.get())
+    # Putting the value in a list
+    team_a_goal_list = [int(team_a_mem1_goal.get()), int(team_a_mem2_goal.get()), int(team_a_mem3_goal.get()),
+                        int(team_a_mem4_goal.get()), int(team_a_mem5_goal.get()), int(team_a_mem6_goal.get()),
+                        int(team_a_mem7_goal.get()), int(team_a_mem8_goal.get()), int(team_a_mem9_goal.get()),
+                        int(team_a_mem10_goal.get()), int(team_a_mem11_goal.get())]
 
+    team_b_goal_list = [int(team_b_mem1_goal.get()), int(team_b_mem2_goal.get()), int(team_b_mem3_goal.get()),
+                        int(team_b_mem4_goal.get()), int(team_b_mem5_goal.get()), int(team_b_mem6_goal.get()),
+                        int(team_b_mem7_goal.get()), int(team_b_mem8_goal.get()), int(team_b_mem9_goal.get()),
+                        int(team_b_mem10_goal.get()), int(team_b_mem11_goal.get())]
+    # Checking if the goal match up
     if team_a_goal1 != team_a_goal_check or team_b_goal1 != team_b_goal_check:
         Label(goals, font='bold', text='Please make sure you have entered the correct amount of goals',
               bg="#094074", fg="red").place(x=480, y=550)
-        print(team_a_goal_check, team_a_goal1, team_b_goal_check, team_b_goal1)
     else:
-        print("hello world")
+        # Setting up the last window
+        goals.destroy()
+        end_window()
+
+
+def end_window():
+    end = Tk()
+    end.geometry("1500x750")
+    end.config(bg="#094074")
+    end.resizable(False, False)
+    # Adding the basic labels
+    Label(end, font='bold', text=team_a_box, bg='#003d5b', fg='white').place(x=300, y=160)
+    Label(end, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
+    Label(end, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
+    Label(end, font='bold', text=location_box, bg='#003d5b', fg='white').place(x=750, y=200)
 
 
 main()
