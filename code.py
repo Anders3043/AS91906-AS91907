@@ -8,7 +8,7 @@ def main():
     main_window.geometry("1500x750")
     main_window.config(bg="#094074")
     Button(main_window, text="QUIT", command=leave, height=3, width=30, bg="#edae49").place(x=1138, y=550)
-    Button(main_window, text="ENTER NEW MATCH DETAILS", command=enter, height=5, width=50, bg="#edae49").place(x=600,
+    Button(main_window, text="ENTER NEW MATCH DETAILS", command=enter, height=5, width=50, bg="#edae49").place(x=530,
                                                                                                                y=400)
     Label(main_window, font='bold', text="Welcome to this program made to store sports games details", bg="#094074",
           fg="white").place(x=500, y=200)
@@ -343,6 +343,11 @@ def team_check():
             team_b_mem11_goal.insert(0, team_b_player[10])
         else:
             team_b_count -= 1
+
+        Label(goals, font='bold', text="Goal from this team", bg='#003d5b', fg='white').place(x=300, y=600)
+        Label(goals, font='bold', text="Goal from this team", bg='#003d5b', fg='white').place(x=1200, y=600)
+        Label(goals, font='bold', text=team_a_goal1, bg='#003d5b', fg='white').place(x=300, y=630)
+        Label(goals, font='bold', text=team_b_goal1, bg='#003d5b', fg='white').place(x=1200, y=630)
         # Submit button
         Button(goals, text="Submit", command=goal_check, height=3, width=30, bg="#edae49").place(x=650, y=615)
 
