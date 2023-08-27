@@ -8,9 +8,8 @@ def main():
     main_window.geometry("1500x750")
     main_window.config(bg="#094074")
     Button(main_window, text="QUIT", command=leave, height=3, width=30, bg="#edae49").place(x=1138, y=550)
-    Button(main_window, text="ENTER NEW MATCH DETAILS", command=enter, height=5, width=50, bg="#edae49").place(x=200,
+    Button(main_window, text="ENTER NEW MATCH DETAILS", command=enter, height=5, width=50, bg="#edae49").place(x=600,
                                                                                                                y=400)
-    Button(main_window, text="VISIT OLD MATCH DETAILS", height=5, width=50, bg="#edae49").place(x=1000, y=400)
     Label(main_window, font='bold', text="Welcome to this program made to store sports games details", bg="#094074",
           fg="white").place(x=500, y=200)
     main_window.resizable(False, False)
@@ -82,10 +81,15 @@ def sub1():
         enter2.resizable(False, False)
         # Making new labels based on the entry
 
-        Label(enter2, font='bold', text="Please enter name of team member(s) on each side", bg='#094074', fg='white').place(x=550,
-                                                                                                                 y=240)
-        Label(enter2, font='bold', text="Please enter goal scored on each side at the bottom box", bg='#094074', fg='white').place(x=530,
-                                                                                                                 y=520)
+        Label(enter2, font='bold', text="Please enter name of team member(s) on each side", bg='#094074',
+              fg='white').place(x=550,
+                                y=240)
+        Label(enter2, font='bold', text="Leave the extra boxes empty", bg='#094074',
+              fg='white').place(x=640,
+                                y=280)
+        Label(enter2, font='bold', text="Please enter goal scored on each side at the bottom box", bg='#094074',
+              fg='white').place(x=530,
+                                y=520)
         Label(enter2, font='bold', text=team_a_box, bg='#003d5b', fg='white').place(x=300, y=160)
         Label(enter2, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
         Label(enter2, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
@@ -151,8 +155,8 @@ def team_check():
     global team_a_mem1_goal, team_a_mem2_goal, team_a_mem3_goal, team_a_mem4_goal, team_a_mem5_goal, team_a_mem6_goal, \
         team_a_mem7_goal, team_a_mem8_goal, team_a_mem9_goal, team_a_mem10_goal, team_a_mem11_goal, team_b_mem1_goal, \
         team_b_mem2_goal, team_b_mem3_goal, team_b_mem4_goal, team_b_mem5_goal, team_b_mem6_goal, team_b_mem7_goal, \
-        team_b_mem8_goal, team_b_mem9_goal, team_b_mem10_goal, team_b_mem11_goal, goals, team_a_goal1, team_b_goal1,\
-        team_a_player, team_b_plater, team_a_count, team_b_count
+        team_b_mem8_goal, team_b_mem9_goal, team_b_mem10_goal, team_b_mem11_goal, goals, team_a_goal1, team_b_goal1, \
+        team_a_player, team_b_player, team_a_count, team_b_count
     team_a_player1 = team_a_mem1.get()
     team_b_player1 = team_b_mem1.get()
     if team_a_goal.get() == "" or team_b_goal.get() == "":
@@ -200,6 +204,9 @@ def team_check():
         Label(goals, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
         Label(goals, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
         Label(goals, font='bold', text=location_box, bg='#003d5b', fg='white').place(x=750, y=200)
+        vs = Label(goals, font='bold', text='VS', bg='#094074', fg='red', )
+        vs.config(font=('Helvetica bold', 70))
+        vs.place(x=700, y=400)
         Label(goals, font='bold', text="Please enter goal scored by each member on each side", bg='#094074',
               fg='white').place(x=530, y=240)
         Label(goals, font='bold', text="(Remove the player's name then add the goal they scored)", bg='#094074',
@@ -341,7 +348,7 @@ def team_check():
 
 
 def goal_check():
-    global team_a_goal_list, team_b_goal_list
+    global team_a_goal_list, team_b_goal_list, team_a_goal_check, team_b_goal_check
     # Adding each team's goal together
     team_a_goal_check = int(team_a_mem1_goal.get())
     if team_a_count > 1:
@@ -387,8 +394,48 @@ def goal_check():
         team_b_goal_check += int(team_b_mem11_goal.get())
     # Putting the value in a list
     team_a_goal_list = [int(team_a_mem1_goal.get())]
-
+    if team_a_count > 1:
+        team_a_goal_list.append(int(team_a_mem2_goal.get()))
+    if team_a_count > 2:
+        team_a_goal_list.append(int(team_a_mem3_goal.get()))
+    if team_a_count > 3:
+        team_a_goal_list.append(int(team_a_mem4_goal.get()))
+    if team_a_count > 4:
+        team_a_goal_list.append(int(team_a_mem5_goal.get()))
+    if team_a_count > 5:
+        team_a_goal_list.append(int(team_a_mem6_goal.get()))
+    if team_a_count > 6:
+        team_a_goal_list.append(int(team_a_mem7_goal.get()))
+    if team_a_count > 7:
+        team_a_goal_list.append(int(team_a_mem8_goal.get()))
+    if team_a_count > 8:
+        team_a_goal_list.append(int(team_a_mem9_goal.get()))
+    if team_a_count > 9:
+        team_a_goal_list.append(int(team_a_mem10_goal.get()))
+    if team_a_count > 10:
+        team_a_goal_list.append(int(team_a_mem11_goal.get()))
     team_b_goal_list = [int(team_b_mem1_goal.get())]
+    if team_b_count > 1:
+        team_b_goal_list.append(int(team_b_mem2_goal.get()))
+    if team_b_count > 2:
+        team_b_goal_list.append(int(team_b_mem3_goal.get()))
+    if team_b_count > 3:
+        team_b_goal_list.append(int(team_b_mem4_goal.get()))
+    if team_b_count > 4:
+        team_b_goal_list.append(int(team_b_mem5_goal.get()))
+    if team_b_count > 5:
+        team_b_goal_list.append(int(team_b_mem6_goal.get()))
+    if team_b_count > 6:
+        team_b_goal_list.append(int(team_b_mem7_goal.get()))
+    if team_b_count > 7:
+        team_b_goal_list.append(int(team_b_mem8_goal.get()))
+    if team_b_count > 8:
+        team_b_goal_list.append(int(team_b_mem9_goal.get()))
+    if team_b_count > 9:
+        team_b_goal_list.append(int(team_b_mem10_goal.get()))
+    if team_b_count > 10:
+        team_b_goal_list.append(int(team_b_mem11_goal.get()))
+
     # Checking if the goal match up
     if team_a_goal1 != team_a_goal_check or team_b_goal1 != team_b_goal_check:
         Label(goals, font='bold', text='Please make sure you have entered the correct amount of goals',
@@ -400,6 +447,7 @@ def goal_check():
 
 
 def end_window():
+    global end
     end = Tk()
     end.geometry("1500x750")
     end.config(bg="#094074")
@@ -409,8 +457,92 @@ def end_window():
     Label(end, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
     Label(end, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
     Label(end, font='bold', text=location_box, bg='#003d5b', fg='white').place(x=750, y=200)
-    Label(end, font='bold', text=team_a_player[0].upper()).place(x=300, y=270)
-    Label(end, font='bold', text=team_a_goal_list[0]).place(x=400, y=270)
+    vs = Label(end, font='bold', text='VS', bg='#094074', fg='red', )
+    vs.config(font=('Helvetica bold', 70))
+    vs.place(x=700, y=400)
+    # Adding labels so user know what's the number and name
+    Label(end, font='bold', text="Team member", bg='#003d5b', fg='white').place(x=200, y=230)
+    Label(end, font='bold', text="Team member", bg='#003d5b', fg='white').place(x=1100, y=230)
+    Label(end, font='bold', text="Goals", bg='#003d5b', fg='white').place(x=400, y=230)
+    Label(end, font='bold', text="Goals", bg='#003d5b', fg='white').place(x=1300, y=230)
+    # Adding winner to the side with more goals
+    if team_a_goal_check > team_b_goal_check:
+        Label(end, font='bold', text='Winner', bg='yellow', fg='black').place(x=300, y=120)
+    elif team_a_goal_check < team_b_goal_check:
+        Label(end, font='bold', text='Winner', bg='yellow', fg='black').place(x=1200, y=120)
+    else:
+        Label(end, font='bold', text="It's a draw", bg='#306383').place(x=750, y=120)
+    # Displaying team member and their goal
+    Label(end, font='bold', text=team_a_player[0].upper(), bg="#306383").place(x=200, y=270)
+    Label(end, font='bold', text=team_a_goal_list[0], bg="#306383").place(x=400, y=270)
+    if team_a_count > 1:
+        Label(end, font='bold', text=team_a_player[1].upper(), bg="#306383").place(x=200, y=300)
+        Label(end, font='bold', text=team_a_goal_list[1], bg="#306383").place(x=400, y=300)
+    if team_a_count > 2:
+        Label(end, font='bold', text=team_a_player[2].upper(), bg="#306383").place(x=200, y=330)
+        Label(end, font='bold', text=team_a_goal_list[2], bg="#306383").place(x=400, y=330)
+    if team_a_count > 3:
+        Label(end, font='bold', text=team_a_player[3].upper(), bg="#306383").place(x=200, y=360)
+        Label(end, font='bold', text=team_a_goal_list[3], bg="#306383").place(x=400, y=360)
+    if team_a_count > 4:
+        Label(end, font='bold', text=team_a_player[4].upper(), bg="#306383").place(x=200, y=390)
+        Label(end, font='bold', text=team_a_goal_list[4], bg="#306383").place(x=400, y=390)
+    if team_a_count > 5:
+        Label(end, font='bold', text=team_a_player[5].upper(), bg="#306383").place(x=200, y=420)
+        Label(end, font='bold', text=team_a_goal_list[5], bg="#306383").place(x=400, y=420)
+    if team_a_count > 6:
+        Label(end, font='bold', text=team_a_player[6].upper(), bg="#306383").place(x=200, y=450)
+        Label(end, font='bold', text=team_a_goal_list[6], bg="#306383").place(x=400, y=450)
+    if team_a_count > 7:
+        Label(end, font='bold', text=team_a_player[7].upper(), bg="#306383").place(x=200, y=480)
+        Label(end, font='bold', text=team_a_goal_list[7], bg="#306383").place(x=400, y=480)
+    if team_a_count > 8:
+        Label(end, font='bold', text=team_a_player[8].upper(), bg="#306383").place(x=200, y=510)
+        Label(end, font='bold', text=team_a_goal_list[8], bg="#306383").place(x=400, y=510)
+    if team_a_count > 9:
+        Label(end, font='bold', text=team_a_player[9].upper(), bg="#306383").place(x=200, y=540)
+        Label(end, font='bold', text=team_a_goal_list[9], bg="#306383").place(x=400, y=540)
+    if team_a_count > 10:
+        Label(end, font='bold', text=team_a_player[10].upper(), bg="#306383").place(x=200, y=570)
+        Label(end, font='bold', text=team_a_goal_list[10], bg="#306383").place(x=400, y=570)
+    Label(end, font='bold', text=team_b_player[0].upper(), bg="#306383").place(x=1100, y=270)
+    Label(end, font='bold', text=team_b_goal_list[0], bg="#306383").place(x=1300, y=270)
+    if team_b_count > 1:
+        Label(end, font='bold', text=team_b_player[1].upper(), bg="#306383").place(x=1100, y=300)
+        Label(end, font='bold', text=team_b_goal_list[1], bg="#306383").place(x=1300, y=300)
+    if team_b_count > 2:
+        Label(end, font='bold', text=team_b_player[2].upper(), bg="#306383").place(x=1100, y=330)
+        Label(end, font='bold', text=team_b_goal_list[2], bg="#306383").place(x=1300, y=330)
+    if team_b_count > 3:
+        Label(end, font='bold', text=team_b_player[3].upper(), bg="#306383").place(x=1100, y=360)
+        Label(end, font='bold', text=team_b_goal_list[3], bg="#306383").place(x=1300, y=360)
+    if team_b_count > 4:
+        Label(end, font='bold', text=team_b_player[4].upper(), bg="#306383").place(x=1100, y=390)
+        Label(end, font='bold', text=team_b_goal_list[4], bg="#306383").place(x=1300, y=390)
+    if team_b_count > 5:
+        Label(end, font='bold', text=team_b_player[5].upper(), bg="#306383").place(x=1100, y=420)
+        Label(end, font='bold', text=team_b_goal_list[5], bg="#306383").place(x=1300, y=420)
+    if team_b_count > 6:
+        Label(end, font='bold', text=team_b_player[6].upper(), bg="#306383").place(x=1100, y=450)
+        Label(end, font='bold', text=team_b_goal_list[6], bg="#306383").place(x=1300, y=450)
+    if team_b_count > 7:
+        Label(end, font='bold', text=team_b_player[7].upper(), bg="#306383").place(x=1100, y=480)
+        Label(end, font='bold', text=team_b_goal_list[7], bg="#306383").place(x=1300, y=480)
+    if team_b_count > 8:
+        Label(end, font='bold', text=team_b_player[8].upper(), bg="#306383").place(x=1100, y=510)
+        Label(end, font='bold', text=team_b_goal_list[8], bg="#306383").place(x=1300, y=510)
+    if team_b_count > 9:
+        Label(end, font='bold', text=team_b_player[9].upper(), bg="#306383").place(x=1100, y=540)
+        Label(end, font='bold', text=team_b_goal_list[9], bg="#306383").place(x=1300, y=540)
+    if team_b_count > 10:
+        Label(end, font='bold', text=team_b_player[10].upper(), bg="#306383").place(x=1100, y=570)
+        Label(end, font='bold', text=team_b_goal_list[10], bg="#306383").place(x=1300, y=570)
+    # Adding quit button
+    Button(end, text="QUIT", command=finish, height=3, width=30, bg="#edae49").place(x=670, y=650)
+
+
+def finish():
+    end.destroy()
 
 
 main()
