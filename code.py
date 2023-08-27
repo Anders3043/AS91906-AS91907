@@ -67,7 +67,8 @@ def sub1():
     date_box = date.get()
     location_box = location.get()
     # Checking if any of the entry are empty
-    if team_b_check == 0 or team_a_check == 0 or date_check == 0 or location_check == 0 or date_box == "Please put it in this format DAY/MONTH eg. 28/7":
+    if team_b_check == 0 or team_a_check == 0 or date_check == 0 or location_check == 0 or date_box == \
+            "Please put it in this format DAY/MONTH eg. 28/7":
         Label(enter1, font="bold", text="Please make sure every box has been filled", fg='red', bg='#094074').place(
             x=570, y=350)
 
@@ -81,9 +82,9 @@ def sub1():
         enter2.resizable(False, False)
         # Making new labels based on the entry
 
-        Label(enter2, font='bold', text="Please enter team member on each side", bg='#094074', fg='white').place(x=580,
+        Label(enter2, font='bold', text="Please enter name of team member(s) on each side", bg='#094074', fg='white').place(x=550,
                                                                                                                  y=240)
-        Label(enter2, font='bold', text="Please enter goal scored on each side", bg='#094074', fg='white').place(x=600,
+        Label(enter2, font='bold', text="Please enter goal scored on each side at the bottom box", bg='#094074', fg='white').place(x=530,
                                                                                                                  y=520)
         Label(enter2, font='bold', text=team_a_box, bg='#003d5b', fg='white').place(x=300, y=160)
         Label(enter2, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
@@ -150,7 +151,8 @@ def team_check():
     global team_a_mem1_goal, team_a_mem2_goal, team_a_mem3_goal, team_a_mem4_goal, team_a_mem5_goal, team_a_mem6_goal, \
         team_a_mem7_goal, team_a_mem8_goal, team_a_mem9_goal, team_a_mem10_goal, team_a_mem11_goal, team_b_mem1_goal, \
         team_b_mem2_goal, team_b_mem3_goal, team_b_mem4_goal, team_b_mem5_goal, team_b_mem6_goal, team_b_mem7_goal, \
-        team_b_mem8_goal, team_b_mem9_goal, team_b_mem10_goal, team_b_mem11_goal, goals, team_a_goal1, team_b_goal1
+        team_b_mem8_goal, team_b_mem9_goal, team_b_mem10_goal, team_b_mem11_goal, goals, team_a_goal1, team_b_goal1,\
+        team_a_player, team_b_plater, team_a_count, team_b_count
     team_a_player1 = team_a_mem1.get()
     team_b_player1 = team_b_mem1.get()
     if team_a_goal.get() == "" or team_b_goal.get() == "":
@@ -204,98 +206,189 @@ def team_check():
               fg='white').place(x=515, y=280)
         Label(goals, font='bold', text="Please fill every box (if player didn't score then put 0)", bg='#094074',
               fg='white').place(x=530, y=320)
+        # Counting how many members
+        team_a_count = 11
+        team_b_count = 11
         # Entry boxes for goal scored by each member
         team_a_mem1_goal = Entry(bg="#306383")
         team_a_mem1_goal.place(x=220, y=250, width=200, height=30)
         team_a_mem1_goal.insert(0, team_a_player[0])
-        team_a_mem2_goal = Entry(bg="#306383")
-        team_a_mem2_goal.place(x=220, y=280, width=200, height=30)
-        team_a_mem2_goal.insert(0, team_a_player[1])
-        team_a_mem3_goal = Entry(bg="#306383")
-        team_a_mem3_goal.place(x=220, y=310, width=200, height=30)
-        team_a_mem3_goal.insert(0, team_a_player[2])
-        team_a_mem4_goal = Entry(bg="#306383")
-        team_a_mem4_goal.place(x=220, y=340, width=200, height=30)
-        team_a_mem4_goal.insert(0, team_a_player[3])
-        team_a_mem5_goal = Entry(bg="#306383")
-        team_a_mem5_goal.place(x=220, y=370, width=200, height=30)
-        team_a_mem5_goal.insert(0, team_a_player[4])
-        team_a_mem6_goal = Entry(bg="#306383")
-        team_a_mem6_goal.place(x=220, y=400, width=200, height=30)
-        team_a_mem6_goal.insert(0, team_a_player[5])
-        team_a_mem7_goal = Entry(bg="#306383")
-        team_a_mem7_goal.place(x=220, y=430, width=200, height=30)
-        team_a_mem7_goal.insert(0, team_a_player[6])
-        team_a_mem8_goal = Entry(bg="#306383")
-        team_a_mem8_goal.place(x=220, y=460, width=200, height=30)
-        team_a_mem8_goal.insert(0, team_a_player[7])
-        team_a_mem9_goal = Entry(bg="#306383")
-        team_a_mem9_goal.place(x=220, y=490, width=200, height=30)
-        team_a_mem9_goal.insert(0, team_a_player[8])
-        team_a_mem10_goal = Entry(bg="#306383")
-        team_a_mem10_goal.place(x=220, y=520, width=200, height=30)
-        team_a_mem10_goal.insert(0, team_a_player[9])
-        team_a_mem11_goal = Entry(bg="#306383")
-        team_a_mem11_goal.place(x=220, y=550, width=200, height=30)
-        team_a_mem11_goal.insert(0, team_a_player[10])
+        if team_a_player[1] != "":
+            team_a_mem2_goal = Entry(bg="#306383")
+            team_a_mem2_goal.place(x=220, y=280, width=200, height=30)
+            team_a_mem2_goal.insert(0, team_a_player[1])
+        else:
+            team_a_count -= 1
+        if team_a_player[2] != "":
+            team_a_mem3_goal = Entry(bg="#306383")
+            team_a_mem3_goal.place(x=220, y=310, width=200, height=30)
+            team_a_mem3_goal.insert(0, team_a_player[2])
+        else:
+            team_a_count -= 1
+        if team_a_player[3] != "":
+            team_a_mem4_goal = Entry(bg="#306383")
+            team_a_mem4_goal.place(x=220, y=340, width=200, height=30)
+            team_a_mem4_goal.insert(0, team_a_player[3])
+        else:
+            team_a_count -= 1
+        if team_a_player[4] != "":
+            team_a_mem5_goal = Entry(bg="#306383")
+            team_a_mem5_goal.place(x=220, y=370, width=200, height=30)
+            team_a_mem5_goal.insert(0, team_a_player[4])
+        else:
+            team_a_count -= 1
+        if team_a_player[5] != "":
+            team_a_mem6_goal = Entry(bg="#306383")
+            team_a_mem6_goal.place(x=220, y=400, width=200, height=30)
+            team_a_mem6_goal.insert(0, team_a_player[5])
+        else:
+            team_a_count -= 1
+        if team_a_player[6] != "":
+            team_a_mem7_goal = Entry(bg="#306383")
+            team_a_mem7_goal.place(x=220, y=430, width=200, height=30)
+            team_a_mem7_goal.insert(0, team_a_player[6])
+        else:
+            team_a_count -= 1
+        if team_a_player[7] != "":
+            team_a_mem8_goal = Entry(bg="#306383")
+            team_a_mem8_goal.place(x=220, y=460, width=200, height=30)
+            team_a_mem8_goal.insert(0, team_a_player[7])
+        else:
+            team_a_count -= 1
+        if team_a_player[8] != "":
+            team_a_mem9_goal = Entry(bg="#306383")
+            team_a_mem9_goal.place(x=220, y=490, width=200, height=30)
+            team_a_mem9_goal.insert(0, team_a_player[8])
+        else:
+            team_a_count -= 1
+        if team_a_player[9] != "":
+            team_a_mem10_goal = Entry(bg="#306383")
+            team_a_mem10_goal.place(x=220, y=520, width=200, height=30)
+            team_a_mem10_goal.insert(0, team_a_player[9])
+        else:
+            team_a_count -= 1
+        if team_a_player[10] != "":
+            team_a_mem11_goal = Entry(bg="#306383")
+            team_a_mem11_goal.place(x=220, y=550, width=200, height=30)
+            team_a_mem11_goal.insert(0, team_a_player[10])
+        else:
+            team_a_count -= 1
         team_b_mem1_goal = Entry(bg="#306383")
         team_b_mem1_goal.place(x=1120, y=250, width=200, height=30)
         team_b_mem1_goal.insert(0, team_b_player[0])
-        team_b_mem2_goal = Entry(bg="#306383")
-        team_b_mem2_goal.place(x=1120, y=280, width=200, height=30)
-        team_b_mem2_goal.insert(0, team_b_player[1])
-        team_b_mem3_goal = Entry(bg="#306383")
-        team_b_mem3_goal.place(x=1120, y=310, width=200, height=30)
-        team_b_mem3_goal.insert(0, team_b_player[2])
-        team_b_mem4_goal = Entry(bg="#306383")
-        team_b_mem4_goal.place(x=1120, y=340, width=200, height=30)
-        team_b_mem4_goal.insert(0, team_b_player[3])
-        team_b_mem5_goal = Entry(bg="#306383")
-        team_b_mem5_goal.place(x=1120, y=370, width=200, height=30)
-        team_b_mem5_goal.insert(0, team_b_player[4])
-        team_b_mem6_goal = Entry(bg="#306383")
-        team_b_mem6_goal.place(x=1120, y=400, width=200, height=30)
-        team_b_mem6_goal.insert(0, team_b_player[5])
-        team_b_mem7_goal = Entry(bg="#306383")
-        team_b_mem7_goal.place(x=1120, y=430, width=200, height=30)
-        team_b_mem7_goal.insert(0, team_b_player[6])
-        team_b_mem8_goal = Entry(bg="#306383")
-        team_b_mem8_goal.place(x=1120, y=460, width=200, height=30)
-        team_b_mem8_goal.insert(0, team_b_player[7])
-        team_b_mem9_goal = Entry(bg="#306383")
-        team_b_mem9_goal.place(x=1120, y=490, width=200, height=30)
-        team_b_mem9_goal.insert(0, team_b_player[8])
-        team_b_mem10_goal = Entry(bg="#306383")
-        team_b_mem10_goal.place(x=1120, y=520, width=200, height=30)
-        team_b_mem10_goal.insert(0, team_b_player[9])
-        team_b_mem11_goal = Entry(bg="#306383")
-        team_b_mem11_goal.place(x=1120, y=550, width=200, height=30)
-        team_b_mem11_goal.insert(0, team_b_player[10])
+        if team_b_player[1] != "":
+            team_b_mem2_goal = Entry(bg="#306383")
+            team_b_mem2_goal.place(x=1120, y=280, width=200, height=30)
+            team_b_mem2_goal.insert(0, team_b_player[1])
+        else:
+            team_b_count -= 1
+        if team_b_player[2] != "":
+            team_b_mem3_goal = Entry(bg="#306383")
+            team_b_mem3_goal.place(x=1120, y=310, width=200, height=30)
+            team_b_mem3_goal.insert(0, team_b_player[2])
+        else:
+            team_b_count -= 1
+        if team_b_player[3] != "":
+            team_b_mem4_goal = Entry(bg="#306383")
+            team_b_mem4_goal.place(x=1120, y=340, width=200, height=30)
+            team_b_mem4_goal.insert(0, team_b_player[3])
+        else:
+            team_b_count -= 1
+        if team_b_player[4] != "":
+            team_b_mem5_goal = Entry(bg="#306383")
+            team_b_mem5_goal.place(x=1120, y=370, width=200, height=30)
+            team_b_mem5_goal.insert(0, team_b_player[4])
+        else:
+            team_b_count -= 1
+        if team_b_player[5] != "":
+            team_b_mem6_goal = Entry(bg="#306383")
+            team_b_mem6_goal.place(x=1120, y=400, width=200, height=30)
+            team_b_mem6_goal.insert(0, team_b_player[5])
+        else:
+            team_b_count -= 1
+        if team_b_player[6] != "":
+            team_b_mem7_goal = Entry(bg="#306383")
+            team_b_mem7_goal.place(x=1120, y=430, width=200, height=30)
+            team_b_mem7_goal.insert(0, team_b_player[6])
+        else:
+            team_b_count -= 1
+        if team_b_player[7] != "":
+            team_b_mem8_goal = Entry(bg="#306383")
+            team_b_mem8_goal.place(x=1120, y=460, width=200, height=30)
+            team_b_mem8_goal.insert(0, team_b_player[7])
+        else:
+            team_b_count -= 1
+        if team_b_player[8] != "":
+            team_b_mem9_goal = Entry(bg="#306383")
+            team_b_mem9_goal.place(x=1120, y=490, width=200, height=30)
+            team_b_mem9_goal.insert(0, team_b_player[8])
+        else:
+            team_b_count -= 1
+        if team_b_player[9] != "":
+            team_b_mem10_goal = Entry(bg="#306383")
+            team_b_mem10_goal.place(x=1120, y=520, width=200, height=30)
+            team_b_mem10_goal.insert(0, team_b_player[9])
+        else:
+            team_b_count -= 1
+        if team_b_player[10] != "":
+            team_b_mem11_goal = Entry(bg="#306383")
+            team_b_mem11_goal.place(x=1120, y=550, width=200, height=30)
+            team_b_mem11_goal.insert(0, team_b_player[10])
+        else:
+            team_b_count -= 1
         # Submit button
         Button(goals, text="Submit", command=goal_check, height=3, width=30, bg="#edae49").place(x=650, y=615)
 
 
 def goal_check():
+    global team_a_goal_list, team_b_goal_list
     # Adding each team's goal together
-    team_a_goal_check = int(team_a_mem1_goal.get()) + int(team_a_mem2_goal.get()) + int(team_a_mem3_goal.get()) \
-                        + int(team_a_mem4_goal.get()) + int(team_a_mem5_goal.get()) + int(team_a_mem6_goal.get()) \
-                        + int(team_a_mem7_goal.get()) + int(team_a_mem8_goal.get()) + int(team_a_mem9_goal.get()) \
-                        + int(team_a_mem10_goal.get()) + int(team_a_mem11_goal.get())
-
-    team_b_goal_check = int(team_b_mem1_goal.get()) + int(team_b_mem2_goal.get()) + int(team_b_mem3_goal.get()) \
-                        + int(team_b_mem4_goal.get()) + int(team_b_mem5_goal.get()) + int(team_b_mem6_goal.get()) \
-                        + int(team_b_mem7_goal.get()) + int(team_b_mem8_goal.get()) + int(team_b_mem9_goal.get()) \
-                        + int(team_b_mem10_goal.get()) + int(team_b_mem11_goal.get())
+    team_a_goal_check = int(team_a_mem1_goal.get())
+    if team_a_count > 1:
+        team_a_goal_check += int(team_a_mem2_goal.get())
+    if team_a_count > 2:
+        team_a_goal_check += int(team_a_mem3_goal.get())
+    if team_a_count > 3:
+        team_a_goal_check += int(team_a_mem4_goal.get())
+    if team_a_count > 4:
+        team_a_goal_check += int(team_a_mem5_goal.get())
+    if team_a_count > 5:
+        team_a_goal_check += int(team_a_mem6_goal.get())
+    if team_a_count > 6:
+        team_a_goal_check += int(team_a_mem7_goal.get())
+    if team_a_count > 7:
+        team_a_goal_check += int(team_a_mem8_goal.get())
+    if team_a_count > 8:
+        team_a_goal_check += int(team_a_mem9_goal.get())
+    if team_a_count > 9:
+        team_a_goal_check += int(team_a_mem10_goal.get())
+    if team_a_count > 10:
+        team_a_goal_check += team_a_mem11_goal.get()
+    team_b_goal_check = int(team_b_mem1_goal.get())
+    if team_b_count > 1:
+        team_b_goal_check += int(team_b_mem2_goal.get())
+    if team_b_count > 2:
+        team_b_goal_check += int(team_b_mem3_goal.get())
+    if team_b_count > 3:
+        team_b_goal_check += int(team_b_mem4_goal.get())
+    if team_b_count > 4:
+        team_b_goal_check += int(team_b_mem5_goal.get())
+    if team_b_count > 5:
+        team_b_goal_check += int(team_b_mem6_goal.get())
+    if team_b_count > 6:
+        team_b_goal_check += int(team_b_mem7_goal.get())
+    if team_b_count > 7:
+        team_b_goal_check += int(team_b_mem8_goal.get())
+    if team_b_count > 8:
+        team_b_goal_check += int(team_b_mem9_goal.get())
+    if team_b_count > 9:
+        team_b_goal_check += int(team_b_mem10_goal.get())
+    if team_b_count > 10:
+        team_b_goal_check += int(team_b_mem11_goal.get())
     # Putting the value in a list
-    team_a_goal_list = [int(team_a_mem1_goal.get()), int(team_a_mem2_goal.get()), int(team_a_mem3_goal.get()),
-                        int(team_a_mem4_goal.get()), int(team_a_mem5_goal.get()), int(team_a_mem6_goal.get()),
-                        int(team_a_mem7_goal.get()), int(team_a_mem8_goal.get()), int(team_a_mem9_goal.get()),
-                        int(team_a_mem10_goal.get()), int(team_a_mem11_goal.get())]
+    team_a_goal_list = [int(team_a_mem1_goal.get())]
 
-    team_b_goal_list = [int(team_b_mem1_goal.get()), int(team_b_mem2_goal.get()), int(team_b_mem3_goal.get()),
-                        int(team_b_mem4_goal.get()), int(team_b_mem5_goal.get()), int(team_b_mem6_goal.get()),
-                        int(team_b_mem7_goal.get()), int(team_b_mem8_goal.get()), int(team_b_mem9_goal.get()),
-                        int(team_b_mem10_goal.get()), int(team_b_mem11_goal.get())]
+    team_b_goal_list = [int(team_b_mem1_goal.get())]
     # Checking if the goal match up
     if team_a_goal1 != team_a_goal_check or team_b_goal1 != team_b_goal_check:
         Label(goals, font='bold', text='Please make sure you have entered the correct amount of goals',
@@ -316,6 +409,8 @@ def end_window():
     Label(end, font='bold', text=team_b_box, bg='#003d5b', fg='white').place(x=1200, y=160)
     Label(end, font='bold', text=date_box, bg='#003d5b', fg='white').place(x=750, y=160)
     Label(end, font='bold', text=location_box, bg='#003d5b', fg='white').place(x=750, y=200)
+    Label(end, font='bold', text=team_a_player[0].upper()).place(x=300, y=270)
+    Label(end, font='bold', text=team_a_goal_list[0]).place(x=400, y=270)
 
 
 main()
